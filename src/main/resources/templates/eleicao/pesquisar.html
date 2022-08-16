@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+ 	
+ 	<!-- AlertifyJS CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" integrity="sha256-yXe5CFTKO0Rj8tiAHQf9O6d68th79HCS5RsdMXSBIZk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" integrity="sha256-WIcJjf4DF+5g6G6ChFG2dZcUxdZ6EDmGca5c/sd9VN0=" crossorigin="anonymous">
+	
+ 	<!-- flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css" integrity="sha256-RXPAyxHVyMLxb0TYCM2OW5R4GWkcDe02jdYgyZp41OU=" crossorigin="anonymous">
+		
+ 
+    <title>Justificativas Abertas</title>
+   
+</head>
+
+<body>
+	<h1>Justificativas Abertas</h1>
+	
+	<form th:action="@{/eleicao/pesquisar}" method="post" th:each="justificativa : ${justificativas}" >
+	 
+	 		<input type="hidden" name="eleicao" th:value="${justificativa.eleicao.codigo}">
+	 		<!-- eleicao codigo -->
+	 		
+			<input type="hidden" name="codigo" th:value="${justificativa.codigo}">
+			<p th:text="'Cidadao: '+ ${justificativa.cidadao.nome}"></p>
+			<!--Nome do cidadao-->
+			
+			<input type="hidden" name="cidadao" th:value="${justificativa.cidadao.codigo}">
+			<p th:text="'Eleicao: '+ ${justificativa.eleicao.descricao}"></p>
+			<!--Codigo e nome da eleicao-->
+		
+			<input type="hidden" name="conteudo" th:value="${justificativa.conteudo}">
+			<p th:text="'Justificativa: '+ ${justificativa.conteudo}"></p>
+			<!--Justificativa da pessoa-->
+			
+			<p>
+				<label for="juiz">Juiz:</label>
+				<select name="juiz" id="juiz">
+                	<option th:each="juiz : ${juizes}" th:value="${juiz.codigo}" th:text="${juiz.nome}">
+            	</select>
+            <!--Codigo e nome do juiz-->
+			</p>
+			
+			<p>
+				<label for="situacao">Analise: </label>
+				<select name="situacao" id="situacao">
+					<option th:value="${aceito}">Aceito</option>
+					<option th:value="${negado}">Negada</option>
+			<!--Situacao da justificativa-->
+					
+				</select>
+			</p>
+			
+			
+			
+			<input type="submit" value="justificar">
+			
+	</form>
+	   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+		<br><br>
+	<a th:href="@{/}">Voltar</a>
+	
+<!-- ==========================================================Codigos para fazer o calendario funcionar========================================================== -->
+	
+	<!-- AlertifyJS JS -->
+	<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" integrity="sha256-QFMAm4xflERDUh0NdY1pa0+MovGNNdM8gda//qDRH64=" crossorigin="anonymous"></script>
+	
+
+	<!-- flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js" integrity="sha256-AkQap91tDcS4YyQaZY2VV34UhSCxu2bDEIgXXXuf5Hg=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js" integrity="sha256-dToT8NhAhejnL0aGbHv9BP6u+1u7vgv2QPUpkuDUhws=" crossorigin="anonymous"></script>
+	
+	<!-- Codigo para inserir o codigo ninja, calendario-->
+	<script type="text/javascript" th:src="@{/js/codigoninjadogodoi.js}"></script>
+	
+</body>
+</html>

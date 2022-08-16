@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+ 	
+ 	<!-- AlertifyJS CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" integrity="sha256-yXe5CFTKO0Rj8tiAHQf9O6d68th79HCS5RsdMXSBIZk=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" integrity="sha256-WIcJjf4DF+5g6G6ChFG2dZcUxdZ6EDmGca5c/sd9VN0=" crossorigin="anonymous">
+	
+ 	<!-- flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css" integrity="sha256-RXPAyxHVyMLxb0TYCM2OW5R4GWkcDe02jdYgyZp41OU=" crossorigin="anonymous">
+		
+ 
+    <title>Justificativa cadastrar</title>
+    
+</head>
+
+<body>
+	<h1>Justificativa cadastrar</h1>
+	
+	<form th:action="@{/eleicao/cadastrar}" method="post">
+	<!--
+	Colocar as variaveis no input que estao dentro do Model Lote.Java	
+	
+	
+	private String conteudo;
+	private LocalDate data;
+	private LocalTime hora;
+	private Situacao situacao;
+	private Cidadao cidadao;
+	private Eleicao eleicao;
+	private Juiz juiz;
+	-->
+		<p>
+			<label for="cidadao">Cidadão:</label>
+			<select name="cidadao" id="cidadao">
+                <option th:each="cidadao : ${cidadaos}" th:value="${cidadao.codigo}" th:text="${cidadao.nome}">
+            </select>
+		</p>
+		
+		<p>
+			<label for="eleicao">Eleição:</label>
+			<select name="eleicao" id="eleicao">
+                <option th:each="eleicao : ${eleicaos}" th:value="${eleicao.codigo}" th:text="${eleicao.descricao}">
+            </select>
+		</p>
+		
+		
+		<p>
+			<label for="conteudo">Justificativa:</label>
+			<textarea name="conteudo" id="conteudo" cols="100" rows="10" style="resize: none"></textarea>
+		</p>	
+		
+		<input type="submit" value="Cadastrar">
+	</form>
+	
+		<br><br>
+	<a th:href="@{/}">Voltar</a>
+	
+<!-- ==========================================================Codigos para fazer o calendario funcionar========================================================== -->
+	
+	<!-- AlertifyJS JS -->
+	<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" integrity="sha256-QFMAm4xflERDUh0NdY1pa0+MovGNNdM8gda//qDRH64=" crossorigin="anonymous"></script>
+	
+
+	<!-- flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js" integrity="sha256-AkQap91tDcS4YyQaZY2VV34UhSCxu2bDEIgXXXuf5Hg=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js" integrity="sha256-dToT8NhAhejnL0aGbHv9BP6u+1u7vgv2QPUpkuDUhws=" crossorigin="anonymous"></script>
+	
+	<!-- Codigo para inserir o codigo ninja, calendario-->
+	<script type="text/javascript" th:src="@{/js/codigoninjadogodoi.js}"></script>
+	
+</body>
+</html>
